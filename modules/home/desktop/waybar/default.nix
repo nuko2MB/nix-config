@@ -1,0 +1,64 @@
+{ lib, config, ... }@args:
+lib.nuko.mkModule args
+  [
+    "desktop"
+    "waybar"
+  ]
+  {
+    programs.waybar = {
+      enable = true;
+      settings = {
+        mainBar = {
+          layer = "top";
+          position = "bottom";
+          height = 15;
+
+          modules-left = [ "hyprland/workspaces" ];
+          modules-center = [ "mpris" ];
+          modules-right = [
+            "tray"
+            "idle_inhibitor"
+            "clock"
+          ];
+
+          tray = {
+            icon-size = 20;
+            spacing = 7;
+          };
+
+          clock = {
+            format = "{:%I:%M %p}";
+          };
+
+          mpris = {
+            format = "{player_icon}  {dynamic}";
+            format-paused = "{status_icon}  <i>{dynamic}</i>";
+            dynamic-order = [
+              "artist"
+              "title"
+            ];
+            player-icons = {
+              default = "󰏤";
+            };
+            status-icons = {
+              paused = "󰐊";
+            };
+            max-length = 1000;
+            # interval = 1;
+          };
+          idle_inhibitor = {
+            format = "{icon}";
+            format-icons = {
+              activated = "󰆪";
+              deactivated = "󰗥";
+            };
+          };
+        };
+      };
+      style = ./waybar.css;
+    };
+
+    wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
+      exec-once = [ "waybar" ];
+    };
+  }
