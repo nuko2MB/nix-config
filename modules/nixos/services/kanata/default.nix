@@ -13,6 +13,7 @@ lib.nuko.mkModule args
         devices = [
           "/dev/input/by-id/usb-Gtech_Magnetic_Wired_Keyboard-event-kbd"
           "/dev/input/by-id/usb-Logitech_USB_Receiver-event-mouse"
+          "usb-Razer_Razer_DeathAdder_V3_Pro_000000000000-event-mouse"
         ];
         config = ''
           (defsrc
