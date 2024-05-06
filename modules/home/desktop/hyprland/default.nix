@@ -46,7 +46,6 @@ mkModule' args
     services = {
       swww = {
         enable = true;
-        package = pkgs.nuko.swww; # Update to 0.92 early to fix crashing.
         systemdTarget = "hyprland-session.target";
         #  startupWallpaper = osConfig.nuko.theme.wallpaper.path;
         slideshow = true;
