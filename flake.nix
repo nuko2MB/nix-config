@@ -35,7 +35,6 @@
     };
 
     hyprlock.url = "github:hyprwm/hyprlock";
-    hypridle.url = "github:hyprwm/hypridle";
   };
   outputs =
     inputs:

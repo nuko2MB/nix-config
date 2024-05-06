@@ -5,12 +5,11 @@
   pkgs,
   ...
 }@args:
-lib.nuko.mkModule' args
+lib.nuko.mkModule args
   [
     "services"
     "hypridle"
   ]
-  [ inputs.hypridle.homeManagerModules.default ]
   {
     nuko.desktop.hyprlock.enable = true;
     services.hypridle =
@@ -22,23 +21,27 @@ lib.nuko.mkModule' args
       {
         enable = true;
         # TODO: systemctl lock should
-        lockCmd = "${hyprlock}";
-        beforeSleepCmd = "${hyprlock}";
+        settings = {
+          general = {
+            lockCmd = "${hyprlock}";
+            beforeSleepCmd = "${hyprlock}";
+          };
 
-        listeners = [
-          {
-            timeout = 500;
-            onTimeout = "${hyprlock}";
-          }
-          {
-            timeout = 900;
-            onTimeout = "${hyprctl} dispatch dpms off";
-            onResume = "${hyprctl} dispatch dpms on";
-          }
-          {
-            timeout = 1200;
-            onTimeout = "${systemctl} suspend";
-          }
-        ];
+          listeners = [
+            {
+              timeout = 500;
+              onTimeout = "${hyprlock}";
+            }
+            {
+              timeout = 900;
+              onTimeout = "${hyprctl} dispatch dpms off";
+              onResume = "${hyprctl} dispatch dpms on";
+            }
+            {
+              timeout = 1200;
+              onTimeout = "${systemctl} suspend";
+            }
+          ];
+        };
       };
   }
