@@ -22,7 +22,8 @@ in
       LOG_ICONS = "true";
     };
 
-    environment.systemPackages = with pkgs; [ font-manager ];
+    # TODO Fix merged. not in unstable yet.
+    # environment.systemPackages = with pkgs; [ font-manager ];
 
     fonts = {
       fontDir.enable = true;
