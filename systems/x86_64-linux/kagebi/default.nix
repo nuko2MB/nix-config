@@ -18,6 +18,7 @@ with lib.nuko;
       enable = true;
       steam = enabled;
       prismlauncher = enabled;
+      sunshine = enabled;
     };
 
     desktop = {
