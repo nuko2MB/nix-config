@@ -31,7 +31,8 @@ lib.nuko.mkModule args
           usernamehw.errorlens
         ]
         # Release pinned extensions
-        ++ (with ext-pinned; [ rust-lang.rust-analyzer ]);
+        ++ (with ext-pinned; [ rust-lang.rust-analyzer ])
+        ++ [ pkgs.nuko.vscode-slint ];
       userSettings = {
         "window.titleBarStyle" = "custom";
         "editor.fontSize" = lib.mkDefault 16;
