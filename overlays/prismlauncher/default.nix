@@ -1,4 +1,4 @@
-{ channels, ... }: # prismlauncher-git
+{ ... }: # prismlauncher-git
 final: prev: {
   # prismlauncher = prismlauncher-git.packages.${prev.system}.prismlauncher.override {
   prismlauncher = prev.prismlauncher.override {

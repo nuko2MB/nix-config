@@ -16,6 +16,9 @@ lib.nuko.mkModule args
       in
       {
         enable = true;
+        shellAliases = {
+          "ls" = "eza";
+        };
         interactiveShellInit = ''
 
           # TODO: command-not-found error with flakes. Use nix-index as a workaround.

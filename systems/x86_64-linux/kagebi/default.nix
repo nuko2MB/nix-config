@@ -104,6 +104,7 @@ with lib.nuko;
 
     # Other
     xdg-utils
+    umu
 
     # Games
     protontricks
@@ -112,6 +113,10 @@ with lib.nuko;
     nuko.ftb-app
     # nuko.kde-color-translucency
     # bottles
+
+    # Harware
+    libva
+    libva-utils
   ];
 
   system.stateVersion = "23.11";
