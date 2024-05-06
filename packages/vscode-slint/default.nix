@@ -2,7 +2,6 @@
   lib,
   stdenv,
   vscode-utils,
-  lua-language-server,
   slint-lsp,
 }:
 let
@@ -28,17 +27,13 @@ vscode-utils.buildVscodeMarketplaceExtension {
 
   postInstall =
     let
-      binary =
-        if stdenv.system == "x86_64-linux" then
-          "slint-lsp-x86_64-unknown-linux-gnu"
-        else if stdenv.system == "armv7l-linux" then
-          "slint-lsp-armv7-unknown-linux-gnueabihf"
-        else if stdenv.system == "aarch64-linux" then
-          "slint-lsp-aarch64-unknown-linux-gnu"
-        else
-          # Does this even work? Idk anything about darwin 
-          "Slint Live Preview.app";
-      lsp-path = "$out/share/vscode/extensions/slint.Slint/bin/${binary}";
+      lookup = {
+        "x86_64-linux" = "slint-lsp-x86_64-unknown-linux-gnu";
+        "armv7l-linux" = "slint-lsp-armv7-unknown-linux-gnueabihf";
+        "aarch64-linux" = "slint-lsp-aarch64-unknown-linux-gnu";
+        "x86_64-darwin" = "Slint Live Preview.app";
+      };
+      lsp-path = "$out/share/vscode/extensions/slint.Slint/bin/${lookup.${stdenv.system}}";
     in
     ''
       rm -r ${lsp-path}
