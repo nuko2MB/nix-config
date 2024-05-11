@@ -80,8 +80,8 @@ with lib.nuko;
     allowedUDPPorts = [ 4646 ];
   };
 
-  # Workaround: Swaylock bug : https://github.com/NixOS/nixpkgs/issues/158025
   #security.pam.services.swaylock = { };
+  security.pam.services.hyprlock = { };
 
   environment.systemPackages = with pkgs; [
     #General

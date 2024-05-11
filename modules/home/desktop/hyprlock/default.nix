@@ -4,25 +4,26 @@
   osConfig,
   ...
 }@args:
-lib.nuko.mkModule' args
+lib.nuko.mkModule args
   [
     "desktop"
     "hyprlock"
   ]
-  [ inputs.hyprlock.homeManagerModules.default ]
   {
     programs.hyprlock = {
       enable = true;
-      general = {
-        grace = 5;
-        hide_cursor = false;
+      settings = {
+        general = {
+          grace = 30;
+          hide_cursor = false;
+        };
+        background = [
+          {
+            inherit (osConfig.nuko.theme.wallpaper) path;
+            blur_size = 4;
+            blur_passes = 2;
+          }
+        ];
       };
-      backgrounds = [
-        {
-          inherit (osConfig.nuko.theme.wallpaper) path;
-          blur_size = 4;
-          blur_passes = 2;
-        }
-      ];
     };
   }

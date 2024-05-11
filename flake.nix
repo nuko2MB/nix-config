@@ -34,7 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprlock.url = "github:hyprwm/hyprlock";
     umu = {
       url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
